@@ -7,17 +7,29 @@ interface SidebarProps {
 export default function Sidebar({ isAdmin, active, onSelect }: SidebarProps) {
 
   const buttonClass = (selected: boolean) =>
-    `flex items-center gap-2 w-full text-left px-4 py-2 rounded-md text-sm font-medium transition
+    `flex items-center gap-3 w-full text-left px-4 py-2.5 rounded-md text-sm font-medium
+    transition-all duration-200
     ${
       selected
-        ? "bg-blue-50 text-blue-600 border-l-4 border-blue-600"
+        ? "bg-[#0F4C81]/10 text-[#0F4C81] border-l-4 border-[#0F4C81]"
         : "text-gray-700 hover:bg-gray-100"
     }`;
 
   return (
-    <aside className="bg-white shadow-sm border border-gray-100 rounded-xl p-5 lg:w-64">
+    <aside className="bg-white
+      shadow-sm
+      border border-gray-100
+      rounded-xl
+      p-5
+      lg:w-64
+      h-fit     ">
 
-      <h2 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-4">
+      <h2 className=" text-xs
+        font-semibold
+        text-gray-400
+        uppercase
+        tracking-wider
+        mb-4">
         Menú
       </h2>
 

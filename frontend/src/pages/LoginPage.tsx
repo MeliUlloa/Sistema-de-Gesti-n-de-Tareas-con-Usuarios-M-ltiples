@@ -1,11 +1,14 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import api from "../api/api"
+import { Eye, EyeOff } from "lucide-react"
 
 export default function LoginPage() {
 
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+
+  const [showPassword, setShowPassword] = useState(false)
   const navigate = useNavigate()
 
   const handleLogin = async () => {
@@ -19,7 +22,7 @@ export default function LoginPage() {
       localStorage.setItem("token", token);
       navigate("/dashboard");
     } catch (err: any) {
-      // show more details for debugging
+      // mas detallado para debugging
       console.error("Login failed:", err);
       if (err.response) {
         console.error("response data:", err.response.data);
@@ -32,7 +35,6 @@ export default function LoginPage() {
 
   return (
 
-    // Nota: las variables de entorno ADMIN_EMAIL/ADMIN_PASSWORD solo son leídas por el backend; no afectan este frontend. Ingresa las credenciales en el formulario.
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
 
       <div className="bg-white p-8 rounded-xl shadow-md w-96">
@@ -41,24 +43,52 @@ export default function LoginPage() {
           Task Manager Login
         </h2>
 
+        {/* email */}
         <input
           className="w-full border p-2 rounded mb-4"
           placeholder="Email"
           onChange={(e) => setEmail(e.target.value)}
         />
 
-        <input
-          className="w-full border p-2 rounded mb-6"
-          type="password"
-          placeholder="Password"
-          onChange={(e) => setPassword(e.target.value)}
-        />
+        {/* contraseña ocultA*/}
+        <div className="relative mb-6">
+          <input
+            className="w-full border p-2 rounded pr-10"
+            type={showPassword ? "text" : "password"} // 🆕 alterna tipo
+            placeholder="Password"
+            onChange={(e) => setPassword(e.target.value)}
+          />
 
+          {/*  */}
+          <button
+            type="button"
+            onClick={() => setShowPassword(!showPassword)}
+            className="absolute right-3 top-2.5 text-gray-500 hover:text-gray-700"
+          >
+            {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+          </button>
+        </div>
+
+        {/* boton mejorado */}
         <button
-          className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600"
           onClick={handleLogin}
+          className="
+            w-full 
+            bg-[#0F4C81]
+            text-white 
+            p-2.5 
+            rounded-lg 
+            font-medium
+            shadow-sm
+            hover:bg-[#256fa1]
+            hover:shadow-md
+            transition-all duration-200
+            focus:outline-none 
+            focus:ring-2 
+            focus:ring-blue-400
+          "
         >
-          Login
+          Iniciar sesión
         </button>
 
       </div>

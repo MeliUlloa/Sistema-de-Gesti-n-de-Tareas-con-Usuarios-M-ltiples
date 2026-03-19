@@ -100,20 +100,20 @@ export default function Dashboard() {
 
     <div className="min-h-screen bg-gray-50">
 
-      {/* NAVBAR */}
+    {/* navbar */}
 
       <Navbar
         userRole={isAdmin ? "Admin" : "Usuario"}
         onLogout={logout}
       />
 
-      {/* LAYOUT */}
+      {/* layout */}
 
-      <div className="max-w-7xl mx-auto px-4 lg:px-6 pt-24 pb-10">
+      <div className="max-w-7xl mx-auto px-4 lg:px-6 pt-[40px] pb-10">
 
         <div className="flex flex-col lg:flex-row gap-6">
 
-          {/* SIDEBAR */}
+          {/* sidebar */}
 
           <Sidebar
             isAdmin={isAdmin}
@@ -121,7 +121,7 @@ export default function Dashboard() {
             onSelect={setActiveSection}
           />
 
-          {/* CONTENIDO */}
+          {/* contenido */}
 
           <main className="flex-1 transition-all duration-300">
 

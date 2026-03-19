@@ -32,7 +32,13 @@ export default function StatsCards({ tasks }: Props) {
     color: string,
     icon: string
   ) => (
-    <div className="bg-white rounded-xl shadow-sm p-5 border border-gray-100 hover:shadow-md transition">
+    <div className="bg-white 
+      rounded-xl 
+      shadow-sm 
+      p-5 
+      border border-gray-100 
+      hover:shadow-md 
+      transition-all duration-200">
 
       <div className="flex items-center justify-between">
 
@@ -41,7 +47,7 @@ export default function StatsCards({ tasks }: Props) {
             {title}
           </p>
 
-          <p className="text-3xl font-bold text-gray-800 mt-1">
+          <p className="text-3xl font-semibold text-gray-800 mt-1">
             {value}
           </p>
         </div>
@@ -60,7 +66,7 @@ export default function StatsCards({ tasks }: Props) {
   return (
     <div className="space-y-6">
 
-      {/* CARDS */}
+      {/* tarjetas */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
 
         {card("Total tareas", total, "text-blue-600", "📋")}
@@ -73,7 +79,7 @@ export default function StatsCards({ tasks }: Props) {
 
       </div>
 
-      {/* PROGRESS BAR */}
+      {/* barra progresiva*/}
       <div className="bg-white rounded-xl shadow-sm p-5 border border-gray-100">
 
         <div className="flex justify-between text-sm text-gray-600 mb-2">

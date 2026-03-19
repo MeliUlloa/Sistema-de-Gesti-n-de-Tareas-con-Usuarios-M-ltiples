@@ -65,10 +65,10 @@ export default function UserPanel() {
 
     <div className="space-y-8">
 
-      {/* ESTADÍSTICAS */}
+      {/* estadisticas */}
       <StatsCards tasks={tasks} />
 
-      {/* LISTA DE TAREAS */}
+      {/* lista total tareas */}
       <TaskList
         tasks={tasks}
         refresh={loadTasks}

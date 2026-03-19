@@ -90,7 +90,7 @@ export default function CreateTask({ refresh }: CreateTaskProps) {
 
         <button
           onClick={handleCreate}
-          className="bg-blue-600 text-white rounded-md px-4 py-2 text-sm font-medium hover:bg-blue-700 transition focus:outline-none focus:ring-2 focus:ring-blue-400"
+          className="bg-[#0F4C81] text-white rounded-md px-4 py-2 text-sm font-medium hover:bg-[#256fa1] transition focus:outline-none focus:ring-2 focus:ring-blue-400"
         >
           Crear tarea
         </button>

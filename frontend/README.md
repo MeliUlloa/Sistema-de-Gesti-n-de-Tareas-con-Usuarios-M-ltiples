@@ -1,73 +1,124 @@
-# React + TypeScript + Vite
+🧩 Sistema de Gestión de Tareas - Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicación web desarrollada con React + TypeScript + Vite, diseñada para la gestión de tareas con roles de usuario y administrador.
 
-Currently, two official plugins are available:
+Inspirada visualmente en el estilo de la Municipalidad de Neuquén, con una interfaz moderna, responsiva y clara.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+🚀 Tecnologías utilizadas
 
-## React Compiler
+⚛️ React
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+🟦 TypeScript
 
-## Expanding the ESLint configuration
+⚡ Vite
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+🎨 TailwindCSS
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+🔐 JWT (autenticación)
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+🌐 Axios (consumo de API)
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+🎯 Lucide React (iconos)
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+📁 Estructura del proyecto
+src/
+│
+├── api/               # Configuración de axios
+├── components/        # Componentes reutilizables
+│   ├── Navbar.tsx
+│   ├── Sidebar.tsx
+│   ├── TaskList.tsx
+│   ├── CreateTask.tsx
+│   ├── StatsCards.tsx
+│   ├── UsersList.tsx
+│   ├── AdminPanel.tsx
+│   └── UserPanel.tsx
+│
+├── pages/
+│   ├── LoginPage.tsx
+│   └── Dashboard.tsx
+│
+├── types/             # Tipos TypeScript
+└── main.tsx
+🔐 Autenticación
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+El sistema utiliza JWT:
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+El usuario inicia sesión desde /login
+
+El token se guarda en localStorage
+
+Se decodifica con jwt-decode
+
+Se controla acceso según rol:
+
+👤 Usuario
+
+🛠 Admin
+
+👥 Roles del sistema
+👤 Usuario
+
+Ver sus tareas asignadas
+
+Confirmar tareas
+
+🛠 Admin
+
+Ver todas las tareas
+
+Ver sus tareas
+
+Crear tareas
+
+Asignar usuarios a tareas
+
+Eliminar tareas
+
+Ver lista de usuarios
+
+📦 Instalación
+npm install
+▶️ Ejecutar en desarrollo
+npm run dev
+🏗 Build de producción
+npm run build
+🎨 Personalización de estilos
+
+Se utiliza TailwindCSS con colores personalizados:
+
+colors: {
+  neuquenBlue: "#0F4C81",
+  neuquenLight: "#2E86C1",
+  neuquenAccent: "#F4B400",
+  neuquenBg: "#bfc4cd",
+}
+
+⚠️ Nota: Si los colores no se aplican correctamente, usar directamente:
+
+bg-[#0F4C81]
+📡 Conexión con backend
+
+El frontend consume una API REST (NestJS) con endpoints como:
+
+POST   /auth/login
+GET    /tasks
+GET    /tasks/user/:id
+POST   /tasks
+POST   /tasks/:id/assign/:userId
+POST   /tasks/:id/confirm/:userId
+DELETE /tasks/:id
+GET    /users
+📱 Responsive Design
+
+Mobile-first
+
+Sidebar adaptable
+
+Grid dinámico
+
+Navbar fijo con offset
+
+👩‍💻 Autora
+
+Melina Ulloa
