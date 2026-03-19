@@ -1,30 +1,26 @@
-🧩 Sistema de Gestión de Tareas - Frontend
+# 🧩 Sistema de Gestión de Tareas - Frontend
 
-Aplicación web desarrollada con React + TypeScript + Vite, diseñada para la gestión de tareas con roles de usuario y administrador.
+Aplicación web desarrollada con **React + TypeScript + Vite**, diseñada para la gestión de tareas con roles de usuario y administrador.
 
-Inspirada visualmente en el estilo de la Municipalidad de Neuquén, con una interfaz moderna, responsiva y clara.
+---
 
-🚀 Tecnologías utilizadas
+## 🚀 Tecnologías utilizadas
 
-⚛️ React
+- **⚛️ React**
+- **🟦 TypeScript**
+- **⚡ Vite**
+- **🎨 TailwindCSS**
+- **🔐 JWT** (autenticación)
+- **🌐 Axios** (consumo de API)
+- **🎯 Lucide React** (iconos)
 
-🟦 TypeScript
+---
 
-⚡ Vite
-
-🎨 TailwindCSS
-
-🔐 JWT (autenticación)
-
-🌐 Axios (consumo de API)
-
-🎯 Lucide React (iconos)
-
-📁 Estructura del proyecto
+## 📁 Estructura del proyecto
+```text
 src/
-│
-├── api/               # Configuración de axios
-├── components/        # Componentes reutilizables
+├── api/            # Configuración de axios
+├── components/     # Componentes reutilizables
 │   ├── Navbar.tsx
 │   ├── Sidebar.tsx
 │   ├── TaskList.tsx
@@ -33,92 +29,101 @@ src/
 │   ├── UsersList.tsx
 │   ├── AdminPanel.tsx
 │   └── UserPanel.tsx
-│
-├── pages/
-│   ├── LoginPage.tsx
-│   └── Dashboard.tsx
-│
-├── types/             # Tipos TypeScript
-└── main.tsx
-🔐 Autenticación
+├── pages/          # Vistas (LoginPage, Dashboard)
+├── types/          # Tipos TypeScript
+└── main.tsx        # Punto de entrada
+```
 
-El sistema utiliza JWT:
+---
 
-El usuario inicia sesión desde /login
+## 🔐 Autenticación y Seguridad
 
-El token se guarda en localStorage
+El flujo de seguridad se gestiona mediante JWT:
 
-Se decodifica con jwt-decode
+- **Inicio de Sesión:** El usuario accede a través de `/login`.
+- **Almacenamiento:** El token se guarda en el `localStorage` del navegador.
+- **Decodificación:** Se utiliza `jwt-decode` para extraer la información del usuario.
+- **Control de Acceso:** Las vistas y acciones se filtran dinámicamente según el rol.
 
-Se controla acceso según rol:
+---
 
-👤 Usuario
+## 👥 Roles del sistema
 
-🛠 Admin
+**👤 Usuario:**
+- Ver sus tareas asignadas.
+- Confirmar tareas.
 
-👥 Roles del sistema
-👤 Usuario
+**🛠 Admin:**
+- Ver todas las tareas.
+- Ver sus tareas.
+- Crear tareas.
+- Asignar usuarios a tareas.
+- Eliminar tareas.
+- Ver lista de usuarios.
 
-Ver sus tareas asignadas
+---
 
-Confirmar tareas
+## 📡 Conexión con backend
 
-🛠 Admin
+El frontend consume una API REST (NestJS) mediante los siguientes endpoints principales:
 
-Ver todas las tareas
+| Método | Endpoint | Acción |
+|--------|----------|--------|
+| `POST` | `/auth/login` | Autenticación y obtención de token |
+| `GET` | `/tasks` | Obtener todas las tareas (Admin) |
+| `GET` | `/tasks/user/:id` | Obtener tareas por ID de usuario |
+| `POST` | `/tasks` | Crear nueva tarea |
+| `POST` | `/tasks/:id/assign/:userId` | Asignar usuario a tarea específica |
+| `POST` | `/tasks/:id/confirm/:userId` | Confirmar cumplimiento de tarea |
+| `DELETE` | `/tasks/:id` | Eliminar tarea del sistema |
+| `GET` | `/users` | Obtener listado de usuarios |
 
-Ver sus tareas
+---
 
-Crear tareas
+## 🎨 Personalización de estilos
 
-Asignar usuarios a tareas
-
-Eliminar tareas
-
-Ver lista de usuarios
-
-📦 Instalación
-npm install
-▶️ Ejecutar en desarrollo
-npm run dev
-🏗 Build de producción
-npm run build
-🎨 Personalización de estilos
-
-Se utiliza TailwindCSS con colores personalizados:
-
+El proyecto utiliza una paleta de colores institucional configurada en `tailwind.config.js`:
+```js
 colors: {
   neuquenBlue: "#0F4C81",
   neuquenLight: "#2E86C1",
   neuquenAccent: "#F4B400",
   neuquenBg: "#bfc4cd",
 }
+```
 
-⚠️ Nota: Si los colores no se aplican correctamente, usar directamente:
+> ⚠️ **Nota:** Si los colores no se aplican correctamente o necesitás usarlos de forma imperativa, podés usar: `bg-[#0F4C81]`.
 
-bg-[#0F4C81]
-📡 Conexión con backend
+---
 
-El frontend consume una API REST (NestJS) con endpoints como:
+## 📦 Instalación y Ejecución
 
-POST   /auth/login
-GET    /tasks
-GET    /tasks/user/:id
-POST   /tasks
-POST   /tasks/:id/assign/:userId
-POST   /tasks/:id/confirm/:userId
-DELETE /tasks/:id
-GET    /users
-📱 Responsive Design
+**1. Instalar dependencias:**
+```bash
+npm install
+```
 
-Mobile-first
+**2. Ejecutar en desarrollo:**
+```bash
+npm run dev
+```
 
-Sidebar adaptable
+**3. Build de producción:**
+```bash
+npm run build
+```
 
-Grid dinámico
+---
 
-Navbar fijo con offset
+## 📱 Responsive Design
 
-👩‍💻 Autora
+- **Mobile-first:** Optimizado para dispositivos móviles desde el código base.
+- **Sidebar Adaptable:** Se oculta o colapsa según la resolución.
+- **Grid Dinámico:** Las tarjetas de tareas se reordenan automáticamente.
+- **Navbar Fijo:** Navegación persistente con offset ajustado.
 
-Melina Ulloa
+---
+
+## 👩‍💻 Autora
+
+**Melina Ulloa**
