@@ -1,98 +1,244 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# 🛠️ Sistema de Gestión de Tareas - Backend
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+API REST desarrollada con **NestJS + Prisma + MySQL**, encargada de la gestión de usuarios, autenticación y administración de tareas. Incluye autenticación con JWT, control de roles y relaciones entre usuarios y tareas.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+---
 
-## Description
+## 🚀 Tecnologías utilizadas
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+- 🧱 NestJS
+- 🟦 TypeScript
+- 🗄 Prisma ORM
+- 🐬 MySQL / MariaDB
+- 🔐 JWT (autenticación)
+- 🔑 Passport
+- 🧂 bcrypt (hash de contraseñas)
+- ✅ class-validator / class-transformer
 
-## Project setup
+---
 
-```bash
-$ npm install
+## 📁 Estructura del proyecto
+
+```
+src/
+├── main.ts
+├── app.module.ts
+│
+├── auth/
+├── users/
+├── tasks/
+└── prisma/
 ```
 
-## Compile and run the project
+Arquitectura modular basada en buenas prácticas de NestJS.
+
+---
+
+## ⚙️ Configuración inicial
+
+### 1. Instalar dependencias
 
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+npm install
 ```
 
-## Run tests
+### 2. Variables de entorno
+
+Crear archivo `.env`:
+
+```env
+DATABASE_URL="mysql://USER:PASSWORD@localhost:/db_name"
+JWT_SECRET=
+PORT=
+```
+
+### 3. Configurar base de datos
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+npx prisma generate
+npx prisma migrate dev
 ```
 
-## Deployment
-
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+### 4. Ejecutar servidor
 
 ```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
+npm run start:dev
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+---
 
-## Resources
+## 🔐 Autenticación
 
-Check out a few resources that may come in handy when working with NestJS:
+El sistema utiliza **JWT**:
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+- Login genera token
+- Token se envía en headers:
 
-## Support
+```
+Authorization: Bearer <token>
+```
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+---
 
-## Stay in touch
+## 👥 Roles del sistema
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+| Rol   | Permisos                        |
+|-------|---------------------------------|
+| user  | Ver tareas, confirmar           |
+| admin | CRUD completo + asignaciones    |
 
-## License
+---
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+## 🔐 Seguridad implementada
+
+- ✅ JWT Authentication
+- ✅ Guards (`JwtGuard`, `RolesGuard`)
+- ✅ Decoradores personalizados (`@Roles`)
+- ✅ Hash de contraseñas con bcrypt
+- ✅ Validación con DTOs
+- ✅ Whitelisting de propiedades
+
+---
+
+## 📡 Endpoints principales
+
+### 🔑 Auth
+
+| Método | Endpoint          | Descripción       |
+|--------|-------------------|-------------------|
+| POST   | `/auth/register`  | Registrar usuario |
+| POST   | `/auth/login`     | Login             |
+
+### 👥 Users (Admin)
+
+| Método | Endpoint  | Descripción     |
+|--------|-----------|-----------------|
+| GET    | `/users`  | Listar usuarios |
+| POST   | `/users`  | Crear usuario   |
+
+### ✅ Tasks
+
+| Método | Endpoint                        | Rol        | Descripción       |
+|--------|---------------------------------|------------|-------------------|
+| POST   | `/tasks`                        | user/admin | Crear tarea       |
+| GET    | `/tasks`                        | user/admin | Listar todas      |
+| GET    | `/tasks/user/:id`               | user/admin | Tareas por usuario|
+| PUT    | `/tasks/:id`                    | admin      | Actualizar        |
+| DELETE | `/tasks/:id`                    | admin      | Eliminar          |
+| POST   | `/tasks/:id/assign/:userId`     | admin      | Asignar usuario   |
+| POST   | `/tasks/:id/confirm/:userId`    | user/admin | Confirmar tarea   |
+
+---
+
+## 🗄️ Modelo de datos
+
+### 👤 User
+
+- `id`
+- `name`
+- `email`
+- `password`
+- `role` (admin | user)
+- `tareas[]`
+
+### 📋 Task
+
+- `id`
+- `title`
+- `description`
+- `status` (pending, in_progress, completed)
+- `priority` (low, medium, high)
+- `usuarios[]`
+
+### 🔗 TaskUser (relación)
+
+- `userId`
+- `taskId`
+- `confirmed` (boolean)
+
+> Relación muchos a muchos entre usuarios y tareas.
+
+---
+
+## 🧠 Lógica destacada
+
+### ✔ Asignación de tareas
+
+- Un admin asigna usuarios
+- Se guarda en tabla intermedia
+
+### ✔ Confirmación de tareas
+
+- Usuario confirma tarea asignada
+- Se actualiza campo `confirmed`
+
+### ✔ Normalización de respuestas
+
+- DTOs para evitar exponer datos sensibles
+- Transformación con `class-transformer`
+
+---
+
+## 📦 Dependencias clave
+
+```json
+{
+  "@nestjs/core": "^11",
+  "@nestjs/jwt": "JWT",
+  "@nestjs/passport": "Auth",
+  "@prisma/client": "ORM",
+  "bcrypt": "Hash",
+  "class-validator": "Validación"
+}
+```
+
+---
+
+## ⚠️ Problemas comunes
+
+### ❌ Error de conexión DB
+
+- Verificar `DATABASE_URL`
+- Revisar si MySQL está corriendo
+
+### ❌ Token inválido
+
+- Verificar `JWT_SECRET`
+- Chequear expiración
+
+### ❌ Relaciones no funcionan
+
+Ejecutar:
+
+```bash
+npx prisma migrate dev
+```
+
+---
+
+## ✨ Características principales
+
+- 🔐 Autenticación segura con JWT
+- 🛡 Control de acceso por roles
+- 📋 CRUD completo de tareas
+- 👥 Gestión de usuarios
+- 🔗 Relación muchos a muchos
+- ⚡ Arquitectura modular
+- 🧼 Código limpio con DTOs
+
+---
+
+## 📌 Próximas mejoras
+
+- 📅 Fechas de vencimiento
+- 🔔 Notificaciones
+- 📊 Estadísticas avanzadas
+- 📎 Adjuntos en tareas
+- 🔍 Filtros y búsqueda
+
+---
+
+## 👩‍💻 Autora
+
+**Melina Ulloa**  
+Desarrolladora Full Stack
