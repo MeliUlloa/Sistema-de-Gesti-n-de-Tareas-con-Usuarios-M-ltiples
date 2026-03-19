@@ -47,7 +47,7 @@ npm install
 Crear archivo `.env`:
 
 ```env
-DATABASE_URL="mysql://USER:PASSWORD@localhost:/db_name"
+DATABASE_URL=
 JWT_SECRET=
 PORT=
 ```
@@ -194,20 +194,6 @@ Authorization: Bearer <token>
 
 ---
 
-## ⚠️ Problemas comunes
-
-### ❌ Error de conexión DB
-
-- Verificar `DATABASE_URL`
-- Revisar si MySQL está corriendo
-
-### ❌ Token inválido
-
-- Verificar `JWT_SECRET`
-- Chequear expiración
-
-### ❌ Relaciones no funcionan
-
 Ejecutar:
 
 ```bash
@@ -225,16 +211,6 @@ npx prisma migrate dev
 - 🔗 Relación muchos a muchos
 - ⚡ Arquitectura modular
 - 🧼 Código limpio con DTOs
-
----
-
-## 📌 Próximas mejoras
-
-- 📅 Fechas de vencimiento
-- 🔔 Notificaciones
-- 📊 Estadísticas avanzadas
-- 📎 Adjuntos en tareas
-- 🔍 Filtros y búsqueda
 
 ---
 
